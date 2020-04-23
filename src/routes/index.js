@@ -2,12 +2,13 @@ const { Router } = require('express');
 const router = Router();
 
 const { getNameProjectById, getProjects, getProjectById, createProject, deleteProject, updateProject} = require('../controller/crudprojects')
-const { getAssets, getAssetsbyProject, createAsset, deleteAsset, gettrashbyProject, updateAsset } = require('../controller/crudassets')
+const { getAssets, getAssetsbyProject, createAsset, deleteAsset, deleteAssets, gettrashbyProject, updateAsset } = require('../controller/crudassets')
 const { createUser} = require('../controller/crudusers')
 
 router.get('/Projects', getProjects);
 router.get('/Projects/:id', getProjectById);
 router.post('/New-Project', createProject);
+router.post('/Del-Project', [deleteAssets, deleteProject]);
 router.post('/New-Asset', createAsset);
 router.post('/New-User', createUser);
 router.delete('/Projects/:id', deleteProject);

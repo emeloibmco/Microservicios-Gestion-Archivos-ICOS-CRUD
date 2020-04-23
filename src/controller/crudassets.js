@@ -43,6 +43,13 @@ const deleteAsset = async (req, res) => {
     console.log(response);
 };
 
+const deleteAssets = async (req, res, next) => {
+    console.log(req.body.name_asset);
+    const response = await pool.query(`DELETE FROM ${nameTable} WHERE id_project = $1`, [req.body.id]) 
+    console.log(response);
+    next();
+};
+
 module.exports = {
     getAssets,
     getAssetsbyProject,
@@ -50,4 +57,5 @@ module.exports = {
     deleteAsset,
     gettrashbyProject,
     updateAsset,
+    deleteAssets,
 } 

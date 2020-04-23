@@ -37,12 +37,12 @@ const createProject = async (req, res) => {
     res.send(`${id_value}`);
 };
 
-const deleteProject = async (req, res) => {
-    const id = req.params.id;
-    console.log(id);
+const deleteProject = async (req, res, next) => {
+    const id = req.body.id;
+    console.log('Eliminando proyecto');
     const response = await pool.query(`DELETE FROM ${nameTable} WHERE id_project = $1`, [id]);
     res.send(response);
-    
+    next();
 };
 
 const getNameProjectById = async (req, res) => {
